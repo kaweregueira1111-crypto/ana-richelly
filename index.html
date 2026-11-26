@@ -886,38 +886,43 @@ still?frame(0):requestAnimationFrame(frame);
   }
 </style>
 
- <script>
-(function(){
-  const toast = document.createElement('div');
-  toast.className = 'spx-plus-toast';
-  toast.innerHTML = `
-    <div style="flex:1">
-      <div style="font-weight:800;font-size:13px;color:#fff">✨ Bem-vinda ao Portal VIP</div>
-      <div class="spx-plus-tags" style="display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:6px;font-size:11px;font-weight:600;color:rgba(255,251,235,0.92)">
-        <span>PIX Rápido</span>
-        <span>Plataforma Oficial</span>
-      </div>
+  <div class="spx-plus-info">
+    <div class="spx-plus-title">
+      <span>Este é um cliente Plus!</span>
+      <!-- Mini Estrela Facetada ao lado do título -->
+      <svg class="spx-plus-star-mini" viewBox="0 0 64 64" fill="none">
+        <polygon points="32,6 39,24 58,25 43,38 48,56 32,46 16,56 21,38 6,25 25,24" fill="#FACC15" stroke="#FFFBEB" stroke-width="2"/>
+        <polygon points="32,6 39,24 32,33" fill="#FFFBEB"/>
+      </svg>
     </div>
-    <button class="spx-plus-close" aria-label="Fechar">✕</button>
-  `;
-  document.body.appendChild(toast);
 
-  const fechar = () => {
-    toast.style.opacity = '0';
-    toast.style.transform = 'perspective(800px) translate3d(-50%, -160%, 0) rotateX(28deg) scale(0.82)';
-  };
+    <div class="spx-plus-tags">
+      <span>influenciadora de milhões</span>
+      <span>casa barra</span>
+      <span>especialista em plataformas</span>
+    </div>
+  </div>
 
-  toast.querySelector('.spx-plus-close').onclick = fechar;
+  <button class="spx-plus-close" type="button" aria-label="Fechar" onclick="document.getElementById('spxPlusToast').classList.remove('show')">✕</button>
+  <div class="spx-plus-bar"></div>
+</div>
 
-  setTimeout(() => {
-    toast.style.transition = 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
-    toast.style.opacity = '1';
-    toast.style.transform = 'perspective(800px) translate3d(-50%, 0, 0) rotateX(0deg) scale(1)';
-  }, 800);
+<script>
+  (function() {
+    var toast = document.getElementById('spxPlusToast');
+    if (!toast) return;
 
-  setTimeout(fechar, 6000);
-})();
-</script>
+    function dispararNotificacao() {
+      if (toast.dataset.shown) return;
+      toast.dataset.shown = '1';
+      setTimeout(function() {
+        toast.classList.add('show');
+        // Fecha automaticamente aos 5 segundos
+        setTimeout(function() {
+          toast.classList.remove('show');
+        }, 5000);
+      }, 300);
+    }
   
 
 
