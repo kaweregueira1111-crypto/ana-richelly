@@ -886,6 +886,40 @@ still?frame(0):requestAnimationFrame(frame);
   }
 </style>
 
+ <script>
+(function(){
+  const toast = document.createElement('div');
+  toast.className = 'spx-plus-toast';
+  toast.innerHTML = `
+    <div style="flex:1">
+      <div style="font-weight:800;font-size:13px;color:#fff">✨ Bem-vinda ao Portal VIP</div>
+      <div class="spx-plus-tags" style="display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:6px;font-size:11px;font-weight:600;color:rgba(255,251,235,0.92)">
+        <span>PIX Rápido</span>
+        <span>Plataforma Oficial</span>
+      </div>
+    </div>
+    <button class="spx-plus-close" aria-label="Fechar">✕</button>
+  `;
+  document.body.appendChild(toast);
+
+  const fechar = () => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'perspective(800px) translate3d(-50%, -160%, 0) rotateX(28deg) scale(0.82)';
+  };
+
+  toast.querySelector('.spx-plus-close').onclick = fechar;
+
+  setTimeout(() => {
+    toast.style.transition = 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+    toast.style.opacity = '1';
+    toast.style.transform = 'perspective(800px) translate3d(-50%, 0, 0) rotateX(0deg) scale(1)';
+  }, 800);
+
+  setTimeout(fechar, 6000);
+})();
+</script>
+  
+
 
 </body>
 </html>
