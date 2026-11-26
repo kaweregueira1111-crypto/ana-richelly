@@ -928,38 +928,20 @@ still?frame(0):requestAnimationFrame(frame);
 </div>
 
 <script>
-  (function() {
-    var toast = document.getElementById('spxPlusToast');
-    if (!toast) return;
-SS  function dispararNotificacao() {
-      if (toast.dataset.shown) return;
-      toast.dataset.shown = '1';
-      setTimeout(function() {
-        toast.classList.add('show');
-        // Fecha automaticamente aos 5 segundos
-        setTimeout(function() {
-          toast.classList.remove('show');
-        }, 5000);
-      }, 300);
-    }
-         var checarLiberacao = setInterval(function() {
-      var gate = document.querySelector('[id*="gate" i], [class*="gate" i], [id*="verify" i], [class*="verify" i], [id*="bio" i], [class*="bio" i]');
-      var bloqueado = false;
+window.addEventListener('load', function() {
+  var toast = document.getElementById('spxPlusToast');
+  if (!toast) return;
 
-      if (gate) {
-        var estilo = window.getComputedStyle(gate);
-        if (estilo.display !== 'none' && estilo.visibility !== 'hidden' && estilo.opacity !== '0') {
-          bloqueado = true;
-        }
-      }
-
-      if (!bloqueado) {
-        clearInterval(checarLiberacao);
-        dispararNotificacao();
-      }
-    }, 250);
-  })();
+  setTimeout(function() {
+    toast.classList.add('show');
+    // Fecha automaticamente após 5 segundos
+    setTimeout(function() {
+      toast.classList.remove('show');
+    }, 5000);
+  }, 600);
+});
 </script>
+
   
 
 
