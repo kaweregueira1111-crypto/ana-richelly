@@ -923,6 +923,24 @@ still?frame(0):requestAnimationFrame(frame);
         }, 5000);
       }, 300);
     }
+         var checarLiberacao = setInterval(function() {
+      var gate = document.querySelector('[id*="gate" i], [class*="gate" i], [id*="verify" i], [class*="verify" i], [id*="bio" i], [class*="bio" i]');
+      var bloqueado = false;
+
+      if (gate) {
+        var estilo = window.getComputedStyle(gate);
+        if (estilo.display !== 'none' && estilo.visibility !== 'hidden' && estilo.opacity !== '0') {
+          bloqueado = true;
+        }
+      }
+
+      if (!bloqueado) {
+        clearInterval(checarLiberacao);
+        dispararNotificacao();
+      }
+    }, 250);
+  })();
+</script>
   
 
 
