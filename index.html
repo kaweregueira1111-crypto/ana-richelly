@@ -719,14 +719,13 @@ still?frame(0):requestAnimationFrame(frame);
     align-items: center;
     gap: 13px;
 
-    background: linear-gradient(135deg, rgba(11, 14, 24, 0.96), rgba(4, 6, 11, 0.99));
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1.5px solid rgba(250, 204, 21, 0.65);
-    box-shadow:
-      0 24px 52px rgba(0, 0, 0, 0.88),
-      0 0 32px rgba(250, 204, 21, 0.28),
-      inset 0 1px 0 rgba(254, 240, 138, 0.45);
+     background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1.5px solid rgba(255, 255, 255, 0.30);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28),
+              inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
 
     pointer-events: none;
     transition: transform 0.75s cubic-bezier(0.18, 1.35, 0.32, 1), opacity 0.4s ease;
@@ -928,19 +927,32 @@ still?frame(0):requestAnimationFrame(frame);
 </div>
 
 <script>
-window.addEventListener('load', function() {
+(function() {
   var toast = document.getElementById('spxPlusToast');
   if (!toast) return;
 
-  setTimeout(function() {
-    toast.classList.add('show');
-    // Fecha automaticamente após 5 segundos
+  function mostrarToast() {
+    if (toast.dataset.shown) return;
+    toast.dataset.shown = '1';
     setTimeout(function() {
-      toast.classList.remove('show');
-    }, 5000);
-  }, 600);
-});
+      toast.classList.add('show');
+      setTimeout(function() {
+        toast.classList.remove('show');
+      }, 5000);
+    }, 450);
+  }
+
+  // Fica checando até a caixa da verificação (.gcard) desaparecer da tela
+  var vigia = setInterval(function() {
+    var telaVerificacao = document.querySelector('.gcard');
+    if (!telaVerificacao || telaVerificacao.offsetParent === null || getComputedStyle(telaVerificacao).opacity === '0') {
+      clearInterval(vigia);
+      mostrarToast();
+    }
+  }, 250);
+})();
 </script>
+
 
   
 
