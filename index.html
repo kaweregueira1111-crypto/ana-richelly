@@ -253,7 +253,7 @@
   <div class="avatar"><div class="inner"><img src="perfil.jpg" alt="ANA RICHELLY" onerror="this.parentElement.innerHTML='TT'"></div><span class="dot"></span></div>
   <div class="pill"><span class="coin">🍀</span><span>$ as melhores aqui! $</span></div>
   <div class="title">
-    <h1>ANA RICHELLYㅤ</h1>
+    <h1>ANA RICHELLY</h1>
     <svg class="verified" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#9d4edd"/><path d="M8 12.3l2.7 2.7L16.5 9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </div>
   <div class="underline"></div>
@@ -701,6 +701,170 @@ still?frame(0):requestAnimationFrame(frame);
     </div>
   </div>
 </div>
+
+   <style>
+  /* ===== NOTIFICAÇÃO VIP: CHEGADA CINEMATOGRÁFICA + ESTRELA 3D + 5s ===== */
+  .spx-plus-toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: perspective(800px) translate3d(-50%, -160%, 0) rotateX(28deg) scale(0.82);
+    opacity: 0;
+    z-index: 99999;
+    width: calc(100% - 28px);
+    max-width: 396px;
+    padding: 14px 15px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    background: linear-gradient(135deg, rgba(11, 14, 24, 0.96), rgba(4, 6, 11, 0.99));
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1.5px solid rgba(250, 204, 21, 0.65);
+    box-shadow:
+      0 24px 52px rgba(0, 0, 0, 0.88),
+      0 0 32px rgba(250, 204, 21, 0.28),
+      inset 0 1px 0 rgba(254, 240, 138, 0.45);
+
+    pointer-events: none;
+    transition: transform 0.75s cubic-bezier(0.18, 1.35, 0.32, 1), opacity 0.4s ease;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .spx-plus-toast.show {
+    transform: perspective(800px) translate3d(-50%, 0, 0) rotateX(0deg) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+    animation: spxAuraPulse 1.4s ease-out;
+  }
+
+  @keyframes spxAuraPulse {
+    0%   { box-shadow: 0 24px 52px rgba(0,0,0,0.88), 0 0 0 rgba(250,204,21,0); }
+    45%  { box-shadow: 0 24px 52px rgba(0,0,0,0.88), 0 0 42px rgba(250,204,21,0.55), inset 0 1px 0 rgba(254,240,138,0.7); }
+    100% { box-shadow: 0 24px 52px rgba(0,0,0,0.88), 0 0 28px rgba(250,204,21,0.28), inset 0 1px 0 rgba(254,240,138,0.45); }
+  }
+
+  /* Feixe de luz varrendo o card na chegada */
+  .spx-plus-toast::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.32) 50%, transparent 70%);
+    transform: translateX(-140%);
+  }
+  .spx-plus-toast.show::after {
+    animation: spxToastSweep 1.6s 0.35s ease-out forwards;
+  }
+  @keyframes spxToastSweep {
+    to { transform: translateX(140%); }
+  }
+
+  /* Barra regressiva de 5 segundos */
+  .spx-plus-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(90deg, #B45309, #FACC15, #FFFBEB);
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+  .spx-plus-toast.show .spx-plus-bar {
+    animation: spxTimer5s 5s linear forwards;
+  }
+  @keyframes spxTimer5s {
+    from { transform: scaleX(1); }
+    to   { transform: scaleX(0); }
+  }
+
+  /* Medalha com Estrela 3D Lapidada */
+  .spx-plus-badge {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle at 30% 25%, #422006, #090b12 85%);
+    border: 1.5px solid rgba(250, 204, 21, 0.6);
+    box-shadow: 0 0 18px rgba(250, 204, 21, 0.32), inset 0 0 10px rgba(250, 204, 21, 0.2);
+  }
+  .spx-plus-badge svg {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 8px rgba(250, 204, 21, 0.65));
+    animation: spxStarFloat 2.8s ease-in-out infinite alternate;
+  }
+  @keyframes spxStarFloat {
+    from { transform: scale(0.95) rotate(-4deg); }
+    to   { transform: scale(1.06) rotate(4deg); }
+  }
+
+  .spx-plus-info { flex: 1; min-width: 0; }
+
+  .spx-plus-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Cinzel', serif;
+    font-size: 14.5px;
+    font-weight: 900;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #FFFBEB 0%, #FACC15 48%, #F59E0B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+  }
+
+  .spx-plus-star-mini {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.9));
+  }
+
+  .spx-plus-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    margin-top: 6px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 251, 235, 0.92);
+  }
+
+  .spx-plus-tags span {
+    background: rgba(250, 204, 21, 0.13);
+    border: 1px solid rgba(250, 204, 21, 0.3);
+    padding: 2px 8px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+
+  .spx-plus-close {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    flex: none;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 12px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+  }
+</style>
+   
   <style>
   /* Garante que a moldura corte as sobras em qualquer nome de grade */
   :is(#rtpGrid, #gamesGrid, .rtp-grid, .games-grid) > *:nth-child(6) > div:first-child,
