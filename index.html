@@ -886,8 +886,27 @@ still?frame(0):requestAnimationFrame(frame);
   }
 </style>
    
-
-  <div class="spx-plus-tags">
+<div class="spx-plus-toast" id="spxPlusToast" role="status" aria-live="polite">
+  <!-- Medalha Esquerda com Estrela 3D Facetada -->
+  <div class="spx-plus-badge" aria-hidden="true">
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://w3.org">
+      <!-- Brilho estelar fino ao fundo -->
+      <path d="M32 2L34.5 29.5L62 32L34.5 34.5L32 62L29.5 34.5L2 32L29.5 29.5L32 2Z" fill="#FEF08A" opacity="0.45"/>
+      <!-- Faces da Estrela 3D Lapidada -->
+      <polygon points="32,8 38.5,24.5 32,32" fill="#FFFBEB"/>
+      <polygon points="32,8 25.5,24.5 32,32" fill="#FDE047"/>
+      <polygon points="56,25.5 38.5,24.5 32,32" fill="#FACC15"/>
+      <polygon points="56,25.5 42.5,37 32,32" fill="#D97706"/>
+      <polygon points="47,53 42.5,37 32,32" fill="#B45309"/>
+      <polygon points="47,53 32,43.5 32,32" fill="#F59E0B"/>
+      <polygon points="17,53 32,43.5 32,32" fill="#92400E"/>
+      <polygon points="17,53 21.5,37 32,32" fill="#D97706"/>
+      <polygon points="8,25.5 21.5,37 32,32" fill="#FACC15"/>
+      <polygon points="8,25.5 25.5,24.5 32,32" fill="#FEF08A"/>
+    </svg>
+  </div>
+   
+  <div class="spx-plus-info">
     <div class="spx-plus-title">
       <span>Este é um cliente Plus!</span>
       <!-- Mini Estrela Facetada ao lado do título -->
@@ -912,8 +931,7 @@ still?frame(0):requestAnimationFrame(frame);
   (function() {
     var toast = document.getElementById('spxPlusToast');
     if (!toast) return;
-
-    function dispararNotificacao() {
+SS  function dispararNotificacao() {
       if (toast.dataset.shown) return;
       toast.dataset.shown = '1';
       setTimeout(function() {
